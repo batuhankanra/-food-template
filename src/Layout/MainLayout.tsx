@@ -1,6 +1,7 @@
 import { Outlet } from "react-router"
 import Header from "./header"
 import Banner from "./components/banner"
+import Footer from "./footer"
 
 
 const MainLayout = () => {
@@ -9,10 +10,11 @@ const MainLayout = () => {
       <Header />
       
       
-      <div className="mt-20">
+      <div className="my-20">
         <Banner />
         <Outlet />
       </div>
+      <Footer />
     </div>
   )
 }
