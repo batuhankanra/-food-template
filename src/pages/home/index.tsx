@@ -1,5 +1,6 @@
 import Cart from "../../components/cart"
 import DinnerToday from "../../components/dinnerToday"
+import TodaysRecipe from "../../components/todaysRecipe"
 
 
 
@@ -9,6 +10,7 @@ const Home = () => {
       
         <Cart />
         <DinnerToday />
+        <TodaysRecipe />
         
   
       
