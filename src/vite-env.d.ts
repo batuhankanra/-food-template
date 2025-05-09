@@ -6,3 +6,15 @@ interface categoryProps{
     title:string,
     link:string
 }
+interface cartProps{
+    id:number
+    title:string
+    imgLink:string
+    description:string
+    rating:number
+}
+
+interface juxtapose{
+    title:string,
+    number:number
+}

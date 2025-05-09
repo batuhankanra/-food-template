@@ -1,11 +1,9 @@
 import { category } from "../../routes/category";
 import clsx from "clsx";
-import { Link, useParams } from "react-router";
+import { Link } from "react-router";
 
 
 const Menu = () => {
-    const params=useParams()
-    console.log(params)
   return (
     <div className="flex items-center gap-x-4 font-semibold text-xl ">
     {category.map(item=>(
