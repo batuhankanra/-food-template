@@ -16,7 +16,7 @@ const DinnerToday = () => {
         <h1 className="text-3xl font-bold text-zinc-100 text-center">Kategorilere Göre Tarifler</h1>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center mt-4">
             {categories.map((item,i)=>(
-                <Link to={`recipe/${item.slug}`} key={i} className={`rounded-xl p-6 ${item.color} hover:scale-110 transition-transform duration-300 shadow`}>
+                <Link to={`/recipe/${item.slug}`} key={i} className={`rounded-xl p-6 ${item.color} hover:scale-110 transition-transform duration-300 shadow`}>
                     <div className="text-4xl mb-2">{item.icon}</div>
                     <h2 className="text-lg font-medium text-black">{item.name}</h2>
                 </Link>
