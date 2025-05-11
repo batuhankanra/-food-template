@@ -4,6 +4,8 @@ import Home from "../pages/home";
 import NotFound from "../pages/notFound";
 import Recipe from "../pages/recipe";
 import RecipeId from "../pages/recipe/recipeId";
+import About from "../pages/about";
+import Restorant from "../pages/restrorant";
 
 
 
@@ -24,7 +26,14 @@ export const router=createBrowserRouter([
                 path:'/recipe/:category',
                 element:<RecipeId />
             },
-
+            {
+                path:'/about',
+                element:<About />
+            },
+            {
+                path:'/restaurant',
+                element:<Restorant />
+            },
             {
                 path:'/*',
                 element:<NotFound />
