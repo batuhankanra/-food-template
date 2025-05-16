@@ -10,11 +10,14 @@ const modal=createSlice({
     reducers:{
         setModal:(state,action:PayloadAction<string>)=>{
             state.modal=action.payload
+        },
+        removeModal:(state)=>{
+            state.modal=''
         }
         
     }
 })
 
 
-export const {setModal} = modal.actions
+export const {setModal,removeModal} = modal.actions
 export default modal.reducer

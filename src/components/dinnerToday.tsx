@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 
-const categories = [
+export const categories = [
   { name: "Kahvaltılıklar", icon: "🍳", color: "bg-yellow-100", slug: "kahvaltiliklar" },
   { name: "Ana Yemekler", icon: "🍛", color: "bg-red-100", slug: "ana-yemekler" },
   { name: "Tatlılar", icon: "🍰", color: "bg-pink-100", slug: "tatlilar" },
