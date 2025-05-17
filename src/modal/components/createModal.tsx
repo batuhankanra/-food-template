@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { categories } from "../../components/dinnerToday";
 import clsx from "clsx";
+import { FaArrowRight } from "react-icons/fa";
+import { useAppDispatch } from "../../stores/hook";
+import { CreateApi } from "../../stores/features/api";
+import { toast } from "sonner";
 
 
 
@@ -14,6 +18,7 @@ const CreateModal = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [category, setCategory] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const dispatch=useAppDispatch()
 
   const handleKeyDown=(e:React.KeyboardEvent<HTMLInputElement>)=>{
      if (e.key === 'Enter' && ingredient.trim() !== '') {
@@ -29,6 +34,14 @@ const CreateModal = () => {
       setStep('');
     }
   }
+  const handleClickDown=()=>{
+    setIngredients([...ingredients, ingredient.trim()]);
+      setIngredient('');
+  }
+  const handleClickStepDown=()=>{
+    setSteps([...steps, step.trim()]);
+    setStep('');
+  }
   const handleRemove=(item:String)=>{
     setIngredients(ingredients.filter(x=> x !== item))
   }
@@ -41,11 +54,43 @@ const CreateModal = () => {
       setSelectedFile(currenFile)
     }
   }
+  const handleCategory=(name:string)=>{
+    setCategory(name)
+    setIsActive(!isActive)
+
+  }
+
+
+
+
+  const submitHandle=async (e:any)=>{
+    e.preventDefault()
+    const formData=new FormData()
+    formData.append('title',name)
+    formData.append('description',description)
+    formData.append('ingredients',JSON.stringify(ingredients))
+    formData.append('steps',JSON.stringify(steps))
+    if(selectedFile){
+      formData.append('file',selectedFile)
+    }
+    formData.append('category',category)
+  
+    toast.promise(dispatch(CreateApi(formData)).unwrap(),{
+      loading:'Yükleniyor',
+      success:'Başarılı',
+      error:'Hata olustu'
+    })
+
+  }
   return (
-   <form className="mt-4 flex flex-col items-center gap-y-4">
+   <form onSubmit={submitHandle} className="mt-4 flex flex-col items-center gap-y-4">
     <input onChange={e=>setName(e.target.value)} value={name} type="text" placeholder="Tarifin ismi" className="w-full outline-none border border-zinc-400 focus:border-zinc-800 focus:bg-white transition-all duration-200 rounded-md py-2 px-1 text-lg" />
     <input onChange={e=>setdescription(e.target.value)} value={description} type="text" placeholder="Tarifin Açıklanması" className="w-full outline-none border border-zinc-400 focus:bg-white transition-all duration-200 focus:border-zinc-800 rounded-md py-2 px-1 text-lg" />
-    <input type="text" value={ingredient} onChange={e=>setIngredient(e.target.value)} onKeyDown={handleKeyDown} placeholder="Tarifin Malzemeleri" className="w-full focus:bg-white transition-all duration-200 outline-none border border-zinc-400 focus:border-zinc-800 rounded-md py-2 px-1 text-lg" />
+    <div className="w-full relative">
+      <input type="text" value={ingredient} onChange={e=>setIngredient(e.target.value)} onKeyDown={handleKeyDown} placeholder="Tarifin Malzemeleri" className="w-full focus:bg-white transition-all duration-200 outline-none border border-zinc-400 focus:border-zinc-800 rounded-md py-2 px-1 text-lg" />
+      <button type="button" onClick={handleClickDown} className="absolute right-0 top-0 cursor-pointer hover:text-black text-zinc-700 h-12 rounded-r-md w-12 flex items-center justify-center"><FaArrowRight/></button>
+      
+    </div>
     <p className="text-sm">Malzemeyi yazıp entera basmanız gerekiyor.</p>
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-4">
       
@@ -56,8 +101,11 @@ const CreateModal = () => {
         </div>
       ))}
     </div>
-    <input type="text" value={step} onChange={e=>setStep(e.target.value)} onKeyDown={handleStepKeyDown} placeholder="Tarifin Adımları" className="w-full outline-none border border-zinc-400 focus:bg-white transition-all duration-200 focus:border-zinc-800 rounded-md py-2 px-1 text-lg" />
-    <p className="text-sm">Adımları yazıp entera basmanız gerekiyor.</p>
+    <div className="w-full relative">
+      <input type="text" value={step} onChange={e=>setStep(e.target.value)} onKeyDown={handleStepKeyDown} placeholder="Tarifin Adımları" className="w-full outline-none border border-zinc-400 focus:bg-white transition-all duration-200 focus:border-zinc-800 rounded-md py-2 px-1 text-lg" />
+      <button type="button" onClick={handleClickStepDown} className="absolute right-0 top-0 cursor-pointer hover:text-black text-zinc-700 h-12 rounded-r-md w-12 flex items-center justify-center"><FaArrowRight/></button>
+    </div>
+      <p className="text-sm">Adımları yazıp entera basmanız gerekiyor.</p>
     {steps.length >0 && steps.map((item,i)=>(
         <div className="bg-sky-400 px-3 py-3 rounded-lg  relative w-full text-start" key={i}>
           {item}
@@ -80,7 +128,7 @@ const CreateModal = () => {
               type="button"
               key={i}
               className="w-full text-start px-3 py-2 hover:bg-sky-200 border-b last:border-b-0 "
-              onClick={()=>setCategory(item.name)}
+              onClick={()=>handleCategory(item.name)}
             >
               {item.name}
             </button>
@@ -95,7 +143,7 @@ const CreateModal = () => {
         src={URL.createObjectURL(selectedFile)}
         alt="Önizleme"
         
-        className="mt-3 w-10 h-10 object-cover rounded-md"
+        className="mt-3 w-30 h-30 object-cover rounded-md"
       />
     )}
     <button type="submit" className=" cursor-pointer  w-full outline-none border border-zinc-400 hover:bg-sky-200 transition-all duration-200 hover:border-zinc-800 text-center rounded-md py-2 px-1 text-lg font-semibold">Olustur</button>

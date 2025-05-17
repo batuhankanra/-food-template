@@ -4,6 +4,7 @@ import Footer from "./footer"
 import Banner from "../components/banner"
 import { useAppSelector } from "../stores/hook"
 import Modal from "../modal/modal"
+import { Toaster } from "sonner"
 
 
 
@@ -12,6 +13,7 @@ const MainLayout = () => {
 
   return (
     <div className="w-full h-full flex flex-col  justify-between">
+      <Toaster position="top-center" />
       {modal && <Modal />}
       <Header />
       

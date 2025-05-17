@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modal from './features/modal'
+import api from './features/api'
 
 
 export const store=configureStore({
     reducer:{
-        modal
+        modal,
+        api
+        
     }
 })
 
