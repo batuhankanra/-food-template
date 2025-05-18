@@ -18,3 +18,11 @@ interface juxtapose{
     title:string,
     number:number
 }
+interface FoodProps{
+    title:string
+    description:string
+    ingredients:string[]
+    steps:string[]
+    image:string
+    category:string
+}

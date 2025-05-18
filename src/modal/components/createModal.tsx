@@ -128,7 +128,7 @@ const CreateModal = () => {
               type="button"
               key={i}
               className="w-full text-start px-3 py-2 hover:bg-sky-200 border-b last:border-b-0 "
-              onClick={()=>handleCategory(item.name)}
+              onClick={()=>handleCategory(item.slug)}
             >
               {item.name}
             </button>
