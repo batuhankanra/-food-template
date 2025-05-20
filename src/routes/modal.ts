@@ -7,15 +7,18 @@ import UpdateModal from "../modal/components/updateModal";
 export const routeModal=[
     {
         path:'create-food',
-        element:CreateModal
+        element:CreateModal,
+        title:"Oluştur"
     },
     {
         path:'update-food',
-        element:UpdateModal
+        element:UpdateModal,
+        title:"Güncelle"
     },
     {
         path:'delete-food',
-        element:DeleteModal
+        element:DeleteModal,
+        title:"Sil"
     },
     {
         path:'recipes-food',

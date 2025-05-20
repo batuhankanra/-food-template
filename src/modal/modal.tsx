@@ -14,7 +14,7 @@ const Modal = () => {
       
         <div className="bg-zinc-300 text-black relative rounded-md w-2/3 max-h-screen  overflow-y-auto">
             <div className="p-3 md:mx-8 mx-3 ">
-              <ModalHeader />
+              <ModalHeader title={currentModal?.title}/>
               {currentModal && <currentModal.element  />}
             </div>
         </div>

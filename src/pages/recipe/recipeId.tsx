@@ -9,6 +9,7 @@ const RecipeId = () => {
     const {data}=useAppSelector(state=>state.api)
   return (
     <section className='max-w-7xl mx-auto p-6'>
+        
         <h1 className='text-3xl font-bold mb-6 capitalize '>{category} tarifleri</h1>
 
         <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 '>

@@ -6,6 +6,7 @@ import Recipe from "../pages/recipe";
 import RecipeId from "../pages/recipe/recipeId";
 import About from "../pages/about";
 import Restorant from "../pages/restrorant";
+import FoodAdmin from "../pages/foodAdmin";
 
 
 
@@ -33,6 +34,10 @@ export const router=createBrowserRouter([
             {
                 path:'/restaurant',
                 element:<Restorant />
+            },
+            {
+                path:'/tarifAdmin',
+                element:<FoodAdmin/>
             },
             {
                 path:'/*',

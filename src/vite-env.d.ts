@@ -19,10 +19,13 @@ interface juxtapose{
     number:number
 }
 interface FoodProps{
+    _id:string
     title:string
     description:string
     ingredients:string[]
     steps:string[]
     image:string
     category:string
+    createdAt:Date
+    updatedAt:Date
 }

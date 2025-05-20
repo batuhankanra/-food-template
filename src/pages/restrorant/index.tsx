@@ -1,8 +1,10 @@
 
 
+
 const Restorant = () => {
   return (
         <section className="max-w-4xl mx-auto px-4 py-12">
+          
       <h2 className="text-3xl font-bold  mb-6">Restoranımız</h2>
 
       <div className=" bg-zinc-900 rounded-xl shadow p-6 space-y-4">
